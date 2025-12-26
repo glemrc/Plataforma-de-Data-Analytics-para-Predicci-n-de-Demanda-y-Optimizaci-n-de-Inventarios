@@ -1,13 +1,10 @@
+# Airflow
+airflow/logs/
+airflow/__pycache__/
+
 # Python
 __pycache__/
 *.pyc
-.venv/
-
-# Airflow logs
-airflow/logs/
-
-# PostgreSQL
-postgres_data/
 
 # OS
 .DS_Store
