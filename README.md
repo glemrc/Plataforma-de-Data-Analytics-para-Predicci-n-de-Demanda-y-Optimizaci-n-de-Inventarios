@@ -20,7 +20,7 @@ Predecir la demanda futura por **producto y tienda** a partir de datos históric
 Los resultados del proyecto están pensados para ser consumidos mediante:
 
 * APIs (FastAPI)
-* Dashboards interactivos (Power BI / Tableau)
+* Dashboards interactivos (Power BI)
 
 ---
 
