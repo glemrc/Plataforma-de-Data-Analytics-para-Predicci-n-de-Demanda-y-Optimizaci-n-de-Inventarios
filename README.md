@@ -81,19 +81,28 @@ Esto permite entrenar y evaluar modelos de forecasting en condiciones cercanas a
 
 ---
 
-## 6. Orquestación con Airflow (en progreso)
+## 6. Orquestación con Airflow
 
-Apache Airflow se utiliza para:
+Apache Airflow se utiliza para orquestar el pipeline de ingesta de datos desde archivos CSV hacia PostgreSQL.
 
-* Orquestar la ingesta diaria de datos
-* Automatizar la carga de CSVs a PostgreSQL
-* Garantizar idempotencia y trazabilidad
+### Estado actual
 
-Los DAGs están diseñados bajo el principio de **separación de responsabilidades**:
+- DAG de ingesta implementado y operativo
+- DAG visible y cargado correctamente en la UI de Airflow
+- Programación diaria (`@daily`)
+- Ejecución de scripts Python mediante `BashOperator`
+- Carga exitosa de datos en la tabla `sales` de PostgreSQL
+- Verificación de datos mediante consultas SQL
 
-* Ingesta
-* Transformación
-* Persistencia
+### Flujo del DAG
+
+1. Airflow detecta el DAG `load_sales_csv_to_postgres`
+2. Se ejecuta un script Python que:
+   - Lee archivos CSV de ventas
+   - Inserta los registros en PostgreSQL
+3. El pipeline queda listo para futuras extensiones (transformaciones, feature engineering)
+
+Este enfoque permite desacoplar la ingesta de datos del procesamiento analítico y facilita la escalabilidad del proyecto.
 
 ---
 
@@ -132,8 +141,8 @@ Servicios disponibles:
 
 * [x] Generación de datos sintéticos
 * [x] Infraestructura dockerizada
-* [ ] Diseño del modelo de datos
-* [ ] DAG de ingesta en Airflow
+* [x] Diseño del modelo de datos
+* [x] DAG de ingesta en Airflow
 * [ ] Transformaciones y feature engineering
 * [ ] Modelos de predicción de demanda
 * [ ] API de consumo (FastAPI)
