@@ -104,6 +104,20 @@ Apache Airflow se utiliza para orquestar el pipeline de ingesta de datos desde a
 
 Este enfoque permite desacoplar la ingesta de datos del procesamiento analítico y facilita la escalabilidad del proyecto.
 
+## Control de Calidad de Datos
+
+El pipeline de ingesta incluye validaciones automáticas de calidad de datos implementadas en Apache Airflow.
+
+Antes de permitir que los datos sean utilizados para análisis o modelos de predicción, se verifican las siguientes reglas:
+
+- Existencia de datos cargados (row count > 0)
+- Ausencia de duplicados por clave natural (fecha, tienda, producto)
+- Ventas no negativas
+- Precios válidos (price > 0)
+
+Si alguna de estas validaciones falla, el DAG se detiene automáticamente, garantizando la integridad del Data Warehouse.
+
+
 ---
 
 ## 7. Stack Tecnológico
